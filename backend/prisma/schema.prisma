@@ -31,6 +31,7 @@ model Customer {
   phone     String
   company   String?
   notes     FollowUpNote[]
+  challans  Challan[]
   createdAt DateTime        @default(now())
   updatedAt DateTime        @updatedAt
 }
@@ -53,6 +54,7 @@ model Product {
   minStock     Int      @default(5)
   warehouseLoc String?
   movements    StockMovement[]
+  challanItems ChallanItem[]
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -70,4 +72,32 @@ model StockMovement {
   product   Product      @relation(fields: [productId], references: [id])
   createdBy String
   createdAt DateTime     @default(now())
+}
+
+enum ChallanStatus {
+  DRAFT
+  CONFIRMED
+  CANCELLED
+}
+
+model Challan {
+  id            String        @id @default(uuid())
+  challanNumber String        @unique
+  customerId    String
+  customer      Customer      @relation(fields: [customerId], references: [id])
+  status        ChallanStatus @default(DRAFT)
+  items         ChallanItem[]
+  createdBy     String
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model ChallanItem {
+  id        String  @id @default(uuid())
+  challanId String
+  challan   Challan @relation(fields: [challanId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Float
 }

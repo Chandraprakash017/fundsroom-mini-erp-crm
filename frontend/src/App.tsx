@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Customers from './pages/Customers';
 import Products from './pages/Products';
 import Inventory from './pages/Inventory';
+import Challans from './pages/Challans';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useAuth();
@@ -47,6 +48,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Inventory />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/challans"
+            element={
+              <ProtectedRoute>
+                <Challans />
               </ProtectedRoute>
             }
           />
