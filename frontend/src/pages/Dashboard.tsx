@@ -22,9 +22,27 @@ const Dashboard = () => {
           Logout
         </button>
       </div>
-      <div className="bg-white p-6 rounded shadow">
+      <div className="bg-white p-6 rounded shadow mb-6">
         <p className="text-lg">Welcome back, {user?.name}!</p>
         <p className="text-gray-600">Role: {user?.role}</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div 
+          onClick={() => navigate('/customers')}
+          className="bg-blue-500 text-white p-6 rounded shadow cursor-pointer hover:bg-blue-600 transition"
+        >
+          <h2 className="text-xl font-bold">Customers</h2>
+          <p className="mt-2 text-sm opacity-90">Manage CRM</p>
+        </div>
+        
+        <div 
+          onClick={() => navigate('/products')}
+          className="bg-green-500 text-white p-6 rounded shadow cursor-pointer hover:bg-green-600 transition"
+        >
+          <h2 className="text-xl font-bold">Products</h2>
+          <p className="mt-2 text-sm opacity-90">Manage Inventory</p>
+        </div>
       </div>
     </div>
   );
