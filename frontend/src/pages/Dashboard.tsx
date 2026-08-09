@@ -43,6 +43,14 @@ const Dashboard = () => {
           <h2 className="text-xl font-bold">Products</h2>
           <p className="mt-2 text-sm opacity-90">Manage Inventory</p>
         </div>
+
+        <div 
+          onClick={() => navigate('/inventory')}
+          className="bg-purple-500 text-white p-6 rounded shadow cursor-pointer hover:bg-purple-600 transition"
+        >
+          <h2 className="text-xl font-bold">Inventory Logs</h2>
+          <p className="mt-2 text-sm opacity-90">Track Movements</p>
+        </div>
       </div>
     </div>
   );
