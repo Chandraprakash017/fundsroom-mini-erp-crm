@@ -1,0 +1,12 @@
+node_modules/
+dist/
+build/
+.env
+.env.*
+!.env.example
+*.db
+*.db-journal
+*.log
+.DS_Store
+.agents/
+.gemini/

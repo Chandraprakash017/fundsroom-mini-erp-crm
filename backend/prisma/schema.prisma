@@ -3,15 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-enum Role {
-  ADMIN
-  SALES
-  WAREHOUSE
-  ACCOUNTS
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model User {
@@ -19,7 +12,7 @@ model User {
   email     String   @unique
   password  String
   name      String
-  role      Role     @default(SALES)
+  role      String   @default("SALES")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -59,14 +52,9 @@ model Product {
   updatedAt    DateTime @updatedAt
 }
 
-enum MovementType {
-  IN
-  OUT
-}
-
 model StockMovement {
   id        String       @id @default(uuid())
-  type      MovementType
+  type      String
   quantity  Int
   productId String
   product   Product      @relation(fields: [productId], references: [id])
@@ -74,18 +62,12 @@ model StockMovement {
   createdAt DateTime     @default(now())
 }
 
-enum ChallanStatus {
-  DRAFT
-  CONFIRMED
-  CANCELLED
-}
-
 model Challan {
   id            String        @id @default(uuid())
   challanNumber String        @unique
   customerId    String
   customer      Customer      @relation(fields: [customerId], references: [id])
-  status        ChallanStatus @default(DRAFT)
+  status        String        @default("DRAFT")
   items         ChallanItem[]
   createdBy     String
   createdAt     DateTime      @default(now())
