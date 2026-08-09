@@ -5,6 +5,7 @@ import customerRoutes from './routes/customer';
 import productRoutes from './routes/product';
 import inventoryRoutes from './routes/inventory';
 import challanRoutes from './routes/challan';
+import dashboardRoutes from './routes/dashboard';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use('/api/customers', customerRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/challans', challanRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'ok', message: 'Mini ERP + CRM Backend is running.' });
